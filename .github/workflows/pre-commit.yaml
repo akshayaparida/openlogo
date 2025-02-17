@@ -26,12 +26,10 @@ jobs:
             version: 10
 
       - name: Install run dependencies
-        run: |
-          pnpm install
-          pnpm rebuild bcrypt
+        run: pnpm install
 
       - name: linting
-        run: pnpm lint
+        run: pnpm  lint
 
       - name: prettier check
         run: pnpm check

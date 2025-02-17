@@ -13,7 +13,7 @@ jobs:
           sudo timedatectl set-timezone Asia/Kolkata
           sudo timedatectl set-ntp true
           timedatectl
-      
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -22,8 +22,14 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install build dependencies
+        run: sudo apt-get install -y build-essential python3
+
       - name: Install Mongoose
         run: npm install mongoose --legacy-peer-deps
+
+      - name: Install bcryptjs (if using bcryptjs as fallback)
+        run: pnpm add bcryptjs
 
       - name: Run refreshUsageCount script
         env:

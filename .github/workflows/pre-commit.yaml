@@ -20,22 +20,25 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install build dependencies
+        run: sudo apt-get install -y build-essential python3
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v3 
         with:
             version: 10
 
       - name: Install run dependencies
-        run: pnpm install
+        run: pnpm install --legacy-peer-deps
 
       - name: linting
-        run: pnpm  lint
+        run: pnpm lint
 
       - name: prettier check
         run: pnpm check
 
       - name: frontend coverage report
         run: pnpm --filter ui coverage
-      
+
       - name: backend coverage report
         run: pnpm --filter app coverage
